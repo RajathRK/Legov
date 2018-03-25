@@ -11,4 +11,9 @@ psycopg2==2.7.4
 pystache==0.5.3
 static==1.0.2
 wsgiref==0.1.2
+<<<<<<< HEAD:requirements.txt
 django-tastypie-0.14.0
+=======
+whitenoise==3.2
+gunicorn==18.0
+>>>>>>> be738b12b2740c0f44aae2793f53020381bf9128:Chatbot/requirements.txt
