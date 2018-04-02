@@ -215,5 +215,3 @@ def response(request):
 		return HttpResponse(general_coversational_bot(message))
 	else :
 		return HttpResponse(legal_conversational_bot(keywords))
-
-
