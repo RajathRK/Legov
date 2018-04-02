@@ -95,10 +95,9 @@ function interact(message){
 	}).done(function(reply) {
 		// Message Received
 		// 	remove loading meassage
-    
     $('.message.loading').remove();
 		// Add message to chatbox
-    $('<div class="message new"><figure class="avatar"><img src="/static/image/botim.png" /></figure>' + reply + '</div>').appendTo($('.mCSB_container')).addClass('new');
+    $('<div class="message new"><figure class="avatar"><img src="/static/image/botim.png" /></figure>' + reply['reply'] + '</div>').appendTo($('.mCSB_container')).addClass('new');
     setDate();
     updateScrollbar();
 

@@ -20,7 +20,7 @@ import string
 
 from uclassify import uclassify
 
-
+import json
 
 
 def general_coversational_bot(question):
@@ -211,7 +211,11 @@ def response(request):
 	message = postData.get('data[msg]')
 	keywords = keyword_extractor(message)
 	print "keyword " + keywords
+
 	if classify(keywords) == "genaral":
-		return HttpResponse(general_coversational_bot(message))
+		reply = general_coversational_bot(message)
 	else :
-		return HttpResponse(legal_conversational_bot(keywords))
+		reply = legal_conversational_bot(keywords)
+	reply = str(reply)
+	data = json.dumps({"reply": reply })
+	return HttpResponse(data,  content_type='application/json')
