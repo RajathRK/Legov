@@ -19,7 +19,7 @@ import nltk.stem.snowball
 import string
 
 from uclassify import uclassify
-
+from django.views.decorators.csrf import csrf_exempt
 import json
 
 
@@ -204,6 +204,7 @@ def classify(keywords):
 	else:
 		return "legal"
 
+@csrf_exempt
 def response(request):
 
 	#content = raw_input("Enter string : ")
