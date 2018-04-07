@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+import dj_database_url
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -23,11 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '8uql)xs42&2143!bnowkvlyy=lo=sb-l_lm(gu-4x*sa*y64!3'
-
+#SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,13 +77,20 @@ WSGI_APPLICATION = 'Chatbot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('postgres://crylhjchihxdwh:2bad08d378b6514154d5d369596dc602757f5f5542d0074744015c2ed9317679@ec2-107-21-126-193.compute-1.amazonaws.com:5432/d4oemup81kfnvb')
+#     )
+# }
+DATABASES = {}
+DATABASES['default'] =  dj_database_url.config(default='postgres://jlvqubtjspqcbr:bf3325b6b56eb132d381f47912aabb2a05391fed83640f38ac81c3b98ecc02ec@ec2-54-221-192-231.compute-1.amazonaws.com:5432/d2b34k4efpbbv5')
+DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
