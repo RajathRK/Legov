@@ -93,15 +93,13 @@ function interact(message){
           msg: message
     },
 	}).done(function(reply) {
-		// Message Received
-		// 	remove loading meassage
     $('.message.loading').remove();
 		// Add message to chatbox
     $('<div class="message new"><figure class="avatar"><img src="/static/image/botim.png" /></figure>' + reply['reply'] + '</div>').appendTo($('.mCSB_container')).addClass('new');
     setDate();
     updateScrollbar();
 
-		}).fail(function() {
-				alert('error calling function');
+		}).fail(function(reply) {
+				alert('error calling function' + reply);
 				});
 }

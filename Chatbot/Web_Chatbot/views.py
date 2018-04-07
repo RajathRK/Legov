@@ -7,10 +7,13 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 import os
+import logging
 
 # Create your views here.
 @ensure_csrf_cookie
 def index(request):
+    logger = logging.getLogger('testlogger')
+    logger.info('This is a simple log message')
     return render(request, 'index.html')
 
 @ensure_csrf_cookie

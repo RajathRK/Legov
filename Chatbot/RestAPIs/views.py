@@ -22,6 +22,9 @@ from uclassify import uclassify
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+import logging
+
+
 
 def general_coversational_bot(question):
 	bot=ChatBot('Bot')
@@ -206,12 +209,12 @@ def classify(keywords):
 
 @csrf_exempt
 def response(request):
-
-	#content = raw_input("Enter string : ")
 	postData = request.POST
 	message = postData.get('data[msg]')
 	keywords = keyword_extractor(message)
 	print "keyword " + keywords
+	logger = logging.getLogger('testlogger')
+	logger.info('This is a simple log message')
 
 	if classify(keywords) == "genaral":
 		reply = general_coversational_bot(message)

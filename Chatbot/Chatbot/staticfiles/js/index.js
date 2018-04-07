@@ -87,7 +87,7 @@ function interact(message){
   $('<div class="message loading new"><figure class="avatar"><img src="/static/image/botim.png" /></figure><span></span></div>').appendTo($('.mCSB_container'));
 	// make a POST request [ajax call]
 
-	$.post('http://127.0.0.1:8000/REST_API/message/', {
+	$.post('https://legal-service-bot.herokuapp.com/REST_API/message/', {
     
     data : {
           msg: message

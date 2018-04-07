@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'Chatbot.wsgi.application'
 #     )
 # }
 DATABASES = {}
-DATABASES['default'] =  dj_database_url.config(default='postgres://jlvqubtjspqcbr:bf3325b6b56eb132d381f47912aabb2a05391fed83640f38ac81c3b98ecc02ec@ec2-54-221-192-231.compute-1.amazonaws.com:5432/d2b34k4efpbbv5')
+DATABASES['default'] =  dj_database_url.config(default='postgres://rrpfvpyesbccyh:7bb6cffbbb9c3d44083bee207a3b91175feaabb02edcd400d16e5b115cbc1ef1@ec2-54-243-54-6.compute-1.amazonaws.com:5432/d5m6e9j7eb5137')
 DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 
 # Password validation
@@ -137,3 +137,20 @@ STATICFILES_DIRS = (
 
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+        },
+    },
+}
