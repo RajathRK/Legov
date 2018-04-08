@@ -62,21 +62,19 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(List<ChatModel>... lists) {
             models = lists[0];
             JSONObject jsonObjSend = new JSONObject();
-            String reply = "error";
+            reply = "error";
 
             try {
-                jsonObjSend.put("msg", text);
+                jsonObjSend.put("message", text);
+
+                Log.e("\n\nRequest JSON build", text + "\n\n");
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            JSONObject jsonObjRecv = HttpClient.SendHttpPost(URL, jsonObjSend);
-            Log.e("\n\ndoInBackground","\n\n" + jsonObjRecv + "\n\n");
-            try {
-                reply = (String) jsonObjRecv.get("reply");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            reply = HttpClient.SendHttpPost(URL, jsonObjSend);
+            Log.e("\n\nAfter POST CALL","\n\n" + reply + "\n\n");
+
             return reply;
         }
 

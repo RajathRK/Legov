@@ -16,13 +16,13 @@ public class HttpClient {
 
     private static final String TAG = "HttpClient";
 
-    public static JSONObject SendHttpPost(String URL, JSONObject jsonObjSend) {
+    public static String SendHttpPost(String URL, JSONObject jsonObjSend) {
         JSONObject reply = new JSONObject();
         try {
-            reply.put("reply","demo");
+            Log.e("\n\nJSON built", jsonObjSend.toString());
+            reply.put("reply","Error");
             DefaultHttpClient httpclient = new DefaultHttpClient();
             HttpPost httpPostRequest = new HttpPost(URL);
-
             StringEntity se;
             se = new StringEntity(jsonObjSend.toString());
 
@@ -47,15 +47,16 @@ public class HttpClient {
 
                 // convert content stream to a String
                 String resultString= convertStreamToString(instream);
+                Log.i("\n\nResponse", resultString);
                 instream.close();
-                resultString = resultString.substring(1,resultString.length()-1); // remove wrapping "[" and "]"
-
+                resultString = resultString.substring(1,resultString.length()-2); // remove wrapping "[" and "]"
+                Log.i("\n\nAnother Response", resultString);
+                String newResultString[] = resultString.split(":");
+                resultString = newResultString[1].substring(2,newResultString[1].length()-1);
+                Log.i("\n\nAfter Split", resultString);
                 // Transform the String into a JSONObject
-                JSONObject jsonObjRecv = new JSONObject(resultString);
-                // Raw DEBUG output of our received JSON object:
-                Log.i(TAG,"<JSONObject>\n"+jsonObjRecv.toString()+"\n</JSONObject>");
 
-                return jsonObjRecv;
+                return resultString;
             }
 
         }
@@ -65,7 +66,7 @@ public class HttpClient {
             // For now we just print the stack trace.
             e.printStackTrace();
         }
-        return reply;
+        return "Error";
     }
 
 
